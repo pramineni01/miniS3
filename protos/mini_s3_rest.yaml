@@ -1,0 +1,21 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+    #  make bucket
+    - selector: minis3.BucketService.CreateBucket
+      post: /mb
+      body: "*"
+    # copy bucket
+    - selector: minis3.BucketService.UploadToBucket
+      post: /cp
+      body: "*"
+    #  remove bucket
+    - selector: minis3.BucketService.DeleteBucket
+      delete: /rm
+      body: "*"
+    #  set alias
+    - selector: minis3.BucketService.SetAlias
+      post: /
+      body: "*"

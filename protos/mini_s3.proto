@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package="./;minis3";
+
+package minis3;
+
+// import "google/protobuf/empty.proto";
+
+service BucketService {
+    // rpc ListBuckets(google.protobuf.Empty) returns (stream Bucket) {}
+    // rpc GetBucketInfo(GetBucketInfoRequest) returns (GetBucketInfoResponse) {}
+    rpc SetAlias(SetAliasRequest) returns (Response) {}
+    rpc CreateBucket(Request) returns (Response) {}
+    rpc UploadToBucket(UploadToBucketRequest) returns (Response) {}
+    rpc DeleteBucket(Request) returns (Response) {}
+}
+
+message SetAliasRequest {
+    string alias_name = 1;
+    string access_key = 2;
+    string secret_key = 3;    
+}
+
+message Request {
+    string bucket_name = 1;
+}
+
+message Response {
+    string status = 1;
+}
+
+message UploadToBucketRequest {
+    string bucket_name = 1;
+    string file_name = 2;
+    bytes data = 3;
+}
